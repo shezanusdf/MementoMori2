@@ -59,7 +59,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
                   <div
                     key={i}
                     className="w-[10px] h-[10px] rounded-[2px]"
-                    style={{ backgroundColor: i < 28 ? '#d35233' : '#d9d4cc' }}
+                    style={{ backgroundColor: '#d35233' }}
                   />
                 ))}
               </div>
@@ -68,7 +68,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
                   <div
                     key={i + 40}
                     className="w-[10px] h-[10px] rounded-[2px]"
-                    style={{ backgroundColor: '#d9d4cc' }}
+                    style={{ backgroundColor: i < 11 ? '#d35233' : '#d9d4cc' }}
                   />
                 ))}
               </div>
