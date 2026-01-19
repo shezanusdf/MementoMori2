@@ -46,7 +46,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
               Create Your Wallpaper
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <p className="text-sm text-muted-foreground mt-3">
+            <p className="text-xs text-muted-foreground mt-3">
               Free. No signup required.
             </p>
           </div>
@@ -73,7 +73,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
                 ))}
               </div>
             </div>
-            <p className="text-sm text-muted-foreground mt-4">
+            <p className="text-xs text-muted-foreground mt-4">
               Each dot = one week of your life
             </p>
           </div>
