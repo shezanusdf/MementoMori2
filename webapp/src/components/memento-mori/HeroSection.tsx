@@ -23,7 +23,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.1] animate-fade-in">
             The average human lives
             <br />
-            <span className="italic text-primary">4,000 weeks.</span>
+            <span className="italic">4,000 weeks.</span>
           </h1>
 
           {/* The Philosophy */}
