@@ -101,14 +101,14 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
   const currentColors = getThemeColors(settings);
 
   return (
-    <div className="space-y-6 sm:space-y-8">
+    <div className="space-y-6 sm:space-y-8 overflow-x-hidden">
       {/* Theme Selection */}
       <div className="space-y-3">
         <Label className="text-sm text-muted-foreground flex items-center gap-2">
           <Palette className="w-4 h-4" />
           Theme
         </Label>
-        <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 sm:gap-2">
+        <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 sm:gap-2">
           {THEMES.map((theme) => (
             <button
               key={theme.id}
@@ -201,36 +201,38 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
       )}
 
       {/* Birth Date, Country & iPhone Model */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="birthDate" className="text-sm text-muted-foreground">
-            Birth Date
-          </Label>
-          <Input
-            id="birthDate"
-            type="date"
-            value={settings.birthDate}
-            onChange={(e) => handleChange('birthDate', e.target.value)}
-            className="bg-background border-border h-11"
-          />
-        </div>
+      <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="birthDate" className="text-sm text-muted-foreground">
+              Birth Date
+            </Label>
+            <Input
+              id="birthDate"
+              type="date"
+              value={settings.birthDate}
+              onChange={(e) => handleChange('birthDate', e.target.value)}
+              className="bg-background border-border h-11 w-full"
+            />
+          </div>
 
-        <div className="space-y-2">
-          <Label className="text-sm text-muted-foreground">
-            Country
-          </Label>
-          <Select onValueChange={handleCountryChange} defaultValue="US">
-            <SelectTrigger className="bg-background border-border h-11">
-              <SelectValue placeholder="Select country" />
-            </SelectTrigger>
-            <SelectContent>
-              {COUNTRIES.map((country) => (
-                <SelectItem key={country.code} value={country.code}>
-                  {country.name} ({country.lifeExpectancy} yrs)
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="space-y-2">
+            <Label className="text-sm text-muted-foreground">
+              Country
+            </Label>
+            <Select onValueChange={handleCountryChange} defaultValue="US">
+              <SelectTrigger className="bg-background border-border h-11 w-full">
+                <SelectValue placeholder="Select" />
+              </SelectTrigger>
+              <SelectContent>
+                {COUNTRIES.map((country) => (
+                  <SelectItem key={country.code} value={country.code}>
+                    {country.name} ({country.lifeExpectancy} yrs)
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -242,7 +244,7 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
             value={settings.device}
             onValueChange={(value) => handleChange('device', value)}
           >
-            <SelectTrigger className="bg-background border-border h-11">
+            <SelectTrigger className="bg-background border-border h-11 w-full">
               <SelectValue placeholder="Select device" />
             </SelectTrigger>
             <SelectContent>
@@ -364,7 +366,7 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
       {/* iOS Shortcut Modal - Optimized for mobile */}
       {showShortcutModal && (
         <div
-          className="fixed inset-0 bg-foreground/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-[100]"
           onClick={() => setShowShortcutModal(false)}
         >
           <div

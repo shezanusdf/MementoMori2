@@ -62,11 +62,11 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-16 lg:gap-24 items-start">
             {/* iPhone Mockup - Top on mobile, Right on desktop */}
             <div className="flex flex-col items-center order-1 lg:order-2 lg:sticky lg:top-8">
-              <div className="animate-float scale-[0.75] sm:scale-90 lg:scale-100 -my-8 sm:my-0">
+              <div className="animate-float scale-[0.7] sm:scale-90 lg:scale-100 my-0 sm:my-0">
                 <IPhoneMockup settings={settings} />
               </div>
               {/* Scroll hint on mobile */}
-              <div className="flex flex-col items-center mt-2 sm:hidden text-muted-foreground/60">
+              <div className="flex flex-col items-center mt-4 sm:hidden text-muted-foreground/60">
                 <span className="text-xs">Scroll to customize</span>
                 <ChevronDown className="w-4 h-4 animate-bounce" />
               </div>
