@@ -44,21 +44,21 @@ export default function Index() {
       <section
         ref={personalizerRef}
         id="create"
-        className="py-24 px-6 md:px-12 lg:px-24 border-t border-border"
+        className="py-12 sm:py-24 px-4 sm:px-6 md:px-12 lg:px-24 border-t border-border"
       >
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif text-foreground mb-4">
+          <div className="mb-8 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-foreground mb-3 sm:mb-4">
               Make it yours.
             </h2>
-            <p className="text-muted-foreground text-lg max-w-md">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-md">
               Choose your theme, enter your birth date, and watch your life unfold in weeks.
             </p>
           </div>
 
           {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-16 lg:gap-24 items-start">
             {/* Form - Left Side */}
             <div className="order-2 lg:order-1">
               <PersonalizerForm
@@ -68,8 +68,8 @@ export default function Index() {
               />
 
               {/* Stats below form */}
-              <div className="mt-12 pt-8 border-t border-border">
-                <div className="flex items-center gap-8 text-sm">
+              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border">
+                <div className="flex flex-wrap items-center gap-4 sm:gap-8 text-sm">
                   <div className="flex items-center gap-2">
                     <div
                       className="w-2.5 h-2.5 rounded-sm"
@@ -97,7 +97,7 @@ export default function Index() {
 
             {/* iPhone Mockup - Right Side */}
             <div className="flex flex-col items-center lg:items-end order-1 lg:order-2 lg:sticky lg:top-8">
-              <div className="animate-float">
+              <div className="animate-float scale-90 sm:scale-100">
                 <IPhoneMockup settings={settings} />
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-6 border-t border-border">
+      <footer className="py-10 sm:py-16 px-4 sm:px-6 border-t border-border">
         <div className="max-w-6xl mx-auto flex justify-center">
           <p className="text-sm text-muted-foreground">
             made with <span className="text-red-500">❤️</span> by{' '}
