@@ -123,13 +123,13 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
                 className="w-full aspect-[9/16] rounded-md overflow-hidden"
                 style={{ backgroundColor: theme.colors.background }}
               >
-                <div className="p-1 sm:p-1.5 flex flex-wrap gap-[1px]">
-                  {Array.from({ length: 12 }).map((_, i) => (
+                <div className="p-1.5 sm:p-2 flex flex-wrap gap-[2px] sm:gap-[2px]">
+                  {Array.from({ length: 9 }).map((_, i) => (
                     <div
                       key={i}
-                      className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-[1px]"
+                      className="w-[3px] h-[3px] sm:w-1 sm:h-1 rounded-[0.5px] sm:rounded-[1px]"
                       style={{
-                        backgroundColor: i < 7 ? theme.colors.lived : theme.colors.future,
+                        backgroundColor: i < 5 ? theme.colors.lived : theme.colors.future,
                       }}
                     />
                   ))}
@@ -200,8 +200,8 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
         </div>
       )}
 
-      {/* Birth Date & Country - Side by side on mobile */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* Birth Date, Country & iPhone Model */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="space-y-2">
           <Label htmlFor="birthDate" className="text-sm text-muted-foreground">
             Birth Date
@@ -232,6 +232,28 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
             </SelectContent>
           </Select>
         </div>
+
+        <div className="space-y-2">
+          <Label className="text-sm text-muted-foreground flex items-center gap-1.5">
+            <Smartphone className="w-3.5 h-3.5" />
+            iPhone Model
+          </Label>
+          <Select
+            value={settings.device}
+            onValueChange={(value) => handleChange('device', value)}
+          >
+            <SelectTrigger className="bg-background border-border h-11">
+              <SelectValue placeholder="Select device" />
+            </SelectTrigger>
+            <SelectContent>
+              {Object.entries(DEVICE_SPECS).map(([key, spec]) => (
+                <SelectItem key={key} value={key}>
+                  {spec.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       {/* Advanced Options - Collapsible on mobile */}
@@ -257,29 +279,6 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
             <Settings2 className="w-4 h-4" />
             Appearance
           </Label>
-
-          {/* Device */}
-          <div className="space-y-2">
-            <label className="text-xs text-muted-foreground flex items-center gap-1.5">
-              <Smartphone className="w-3.5 h-3.5" />
-              iPhone Model
-            </label>
-            <Select
-              value={settings.device}
-              onValueChange={(value) => handleChange('device', value)}
-            >
-              <SelectTrigger className="bg-background border-border h-10">
-                <SelectValue placeholder="Select device" />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.entries(DEVICE_SPECS).map(([key, spec]) => (
-                  <SelectItem key={key} value={key}>
-                    {spec.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
 
           {/* Dot Shape */}
           <div className="space-y-2">
@@ -427,7 +426,7 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
                   <div className="flex-1">
                     <p className="text-foreground font-medium mb-1 text-sm sm:text-base">Create Automation</p>
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      Open <span className="font-medium text-foreground">Shortcuts</span> → <span className="font-medium text-foreground">Automation</span> → New Automation → <span className="font-medium text-foreground">Time of Day</span> → 6:00 AM Daily → Run Immediately
+                      Open <span className="font-medium text-foreground">Shortcuts</span> app → <span className="font-medium text-foreground">Automation</span> tab → New Automation → <span className="font-medium text-foreground">Time of Day</span> → 6:00 AM → Repeat <span className="font-medium text-foreground">"Daily"</span> → Select <span className="font-medium text-foreground">"Run Immediately"</span> → <span className="font-medium text-foreground">"Create New Shortcut"</span>
                     </p>
                   </div>
                 </div>
@@ -441,10 +440,10 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
                     <p className="text-foreground font-medium mb-2 text-sm sm:text-base">Add these actions</p>
                     <div className="space-y-2 text-xs sm:text-sm text-muted-foreground">
                       <p>
-                        <span className="font-medium text-foreground">Get Contents of URL</span> → paste URL
+                        3.1 <span className="font-medium text-foreground">"Get Contents of URL"</span> → paste the URL from step 1
                       </p>
                       <p>
-                        <span className="font-medium text-foreground">Set Wallpaper Photo</span> → Lock Screen
+                        3.2 <span className="font-medium text-foreground">"Set Wallpaper Photo"</span> → choose "Lock Screen"
                       </p>
                     </div>
                   </div>
@@ -453,7 +452,10 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
                 {/* Important Note */}
                 <div className="bg-amber-900/80 border border-amber-700 rounded-xl p-3 sm:p-4">
                   <p className="text-xs sm:text-sm text-amber-100">
-                    <span className="font-semibold text-amber-300">Important:</span> In "Set Wallpaper Photo" → disable <span className="font-bold text-white">"Show Preview"</span> and <span className="font-bold text-white">"Crop to Subject"</span>
+                    <span className="font-semibold text-amber-300">Important:</span> In "Set Wallpaper Photo", tap the arrow (→) to show options → disable both <span className="font-bold text-white">"Crop to Subject"</span> and <span className="font-bold text-white">"Show Preview"</span>
+                  </p>
+                  <p className="text-[10px] sm:text-xs text-amber-200/80 mt-2">
+                    This prevents iOS from cropping and asking for confirmation each time
                   </p>
                 </div>
               </div>

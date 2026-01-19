@@ -24,7 +24,7 @@ export default function Index() {
     shape: 'circle',
     widgetPosition: 'none',
     theme: 'light',
-    showLabels: true,
+    showLabels: false,
   });
 
   const scrollToPersonalizer = () => {
