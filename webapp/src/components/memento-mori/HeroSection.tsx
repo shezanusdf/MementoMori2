@@ -17,7 +17,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
       </nav>
 
       {/* Main Hero Content - Left Aligned */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-16 max-w-5xl">
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-4 max-w-5xl">
         <div className="space-y-10 md:space-y-12">
           {/* Opening Hook */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.1] animate-fade-in">
@@ -28,7 +28,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
 
           {/* The Philosophy */}
           <div className="space-y-4 max-w-2xl animate-fade-in-delay-1 -mt-4">
-            <p className="text-lg md:text-xl text-foreground/60 leading-relaxed">
+            <p className="text-xl md:text-2xl text-foreground/60 leading-relaxed">
               How many have you spent? How many remain?
             </p>
 
@@ -41,10 +41,10 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
           <div className="animate-fade-in-delay-2">
             <Button
               onClick={onScrollToPersonalizer}
-              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 py-6 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-10 py-7 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
             >
               Create Your Wallpaper
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <p className="text-sm text-muted-foreground mt-3">
               Free. No signup required.
