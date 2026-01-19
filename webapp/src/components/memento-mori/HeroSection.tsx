@@ -28,11 +28,11 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
 
           {/* The Philosophy */}
           <div className="space-y-6 max-w-2xl animate-fade-in-delay-1">
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/60 leading-relaxed">
               How many have you spent? How many remain?
             </p>
 
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/60 leading-relaxed">
               <span className="text-foreground font-medium">InspoGrid</span> turns your life into a single image. One dot per week. Updated daily. Always on your lock screen.
             </p>
           </div>
@@ -41,7 +41,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
           <div className="animate-fade-in-delay-2">
             <Button
               onClick={onScrollToPersonalizer}
-              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 py-6 text-base font-medium"
+              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 py-6 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
             >
               Create Your Wallpaper
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -51,17 +51,27 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
             </p>
           </div>
 
-          {/* Decorative weeks visualization */}
+          {/* Decorative weeks visualization - Two rows */}
           <div className="py-6 animate-fade-in-delay-3">
-            <div className="flex flex-wrap gap-[4px]">
-              {Array.from({ length: 52 }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    i < 35 ? 'bg-primary' : 'bg-muted'
-                  }`}
-                />
-              ))}
+            <div className="flex flex-col gap-[4px]">
+              <div className="flex gap-[4px]">
+                {Array.from({ length: 26 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                      i < 18 ? 'bg-primary' : 'bg-muted'
+                    }`}
+                  />
+                ))}
+              </div>
+              <div className="flex gap-[4px]">
+                {Array.from({ length: 26 }).map((_, i) => (
+                  <div
+                    key={i + 26}
+                    className="w-2.5 h-2.5 rounded-full bg-muted transition-colors"
+                  />
+                ))}
+              </div>
             </div>
             <p className="text-sm text-muted-foreground mt-4">
               Each dot = one week of your life
