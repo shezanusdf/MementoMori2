@@ -335,7 +335,7 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
-          onClick={onDownload}
+          onClick={() => setShowShortcutModal(true)}
           className="flex-1 bg-foreground text-background hover:bg-foreground/90 font-medium rounded-full h-12"
         >
           <Download className="w-4 h-4 mr-2" />

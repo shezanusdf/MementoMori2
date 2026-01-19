@@ -16,8 +16,8 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
         </div>
       </nav>
 
-      {/* Main Hero Content - Centered Style */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 max-w-4xl mx-auto">
+      {/* Main Hero Content - Left Aligned */}
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 max-w-5xl">
         <div className="space-y-10 md:space-y-12">
           {/* Opening Hook */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.1] animate-fade-in">
