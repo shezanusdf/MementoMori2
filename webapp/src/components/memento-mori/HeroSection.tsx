@@ -17,7 +17,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
       </nav>
 
       {/* Main Hero Content - Left Aligned */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 max-w-5xl">
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-16 max-w-5xl">
         <div className="space-y-10 md:space-y-12">
           {/* Opening Hook */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.1] animate-fade-in">
@@ -27,12 +27,12 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
           </h1>
 
           {/* The Philosophy */}
-          <div className="space-y-6 max-w-2xl animate-fade-in-delay-1">
+          <div className="space-y-4 max-w-2xl animate-fade-in-delay-1 -mt-4">
             <p className="text-lg md:text-xl text-foreground/60 leading-relaxed">
               How many have you spent? How many remain?
             </p>
 
-            <p className="text-lg md:text-xl text-foreground/60 leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
               <span className="text-foreground font-medium">InspoGrid</span> turns your life into a single image. One dot per week. Updated daily. Always on your lock screen.
             </p>
           </div>
