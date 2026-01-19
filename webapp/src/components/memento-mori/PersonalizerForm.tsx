@@ -200,42 +200,40 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
         </div>
       )}
 
-      {/* Birth Date, Country & iPhone Model */}
-      <div className="grid grid-cols-1 gap-4">
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="birthDate" className="text-sm text-muted-foreground">
-              Birth Date
-            </Label>
-            <Input
-              id="birthDate"
-              type="date"
-              value={settings.birthDate}
-              onChange={(e) => handleChange('birthDate', e.target.value)}
-              className="bg-background border-border h-11 w-full"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-sm text-muted-foreground">
-              Country
-            </Label>
-            <Select onValueChange={handleCountryChange} defaultValue="US">
-              <SelectTrigger className="bg-background border-border h-11 w-full">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                {COUNTRIES.map((country) => (
-                  <SelectItem key={country.code} value={country.code}>
-                    {country.name} ({country.lifeExpectancy} yrs)
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+      {/* Birth Date, Country & iPhone Model - all in one row on larger screens */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="birthDate" className="text-sm text-muted-foreground">
+            Birth Date
+          </Label>
+          <Input
+            id="birthDate"
+            type="date"
+            value={settings.birthDate}
+            onChange={(e) => handleChange('birthDate', e.target.value)}
+            className="bg-background border-border h-11 w-full"
+          />
         </div>
 
         <div className="space-y-2">
+          <Label className="text-sm text-muted-foreground">
+            Country
+          </Label>
+          <Select onValueChange={handleCountryChange} defaultValue="US">
+            <SelectTrigger className="bg-background border-border h-11 w-full">
+              <SelectValue placeholder="Select" />
+            </SelectTrigger>
+            <SelectContent>
+              {COUNTRIES.map((country) => (
+                <SelectItem key={country.code} value={country.code}>
+                  {country.name} ({country.lifeExpectancy} yrs)
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="space-y-2 col-span-2 sm:col-span-1">
           <Label className="text-sm text-muted-foreground flex items-center gap-1.5">
             <Smartphone className="w-3.5 h-3.5" />
             iPhone Model
@@ -258,15 +256,15 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
         </div>
       </div>
 
-      {/* Advanced Options - Collapsible on mobile */}
+      {/* Advanced Settings - Collapsible by default */}
       <div className="space-y-3">
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="flex items-center justify-between w-full text-left sm:hidden"
+          className="flex items-center justify-between w-full text-left"
         >
           <Label className="text-sm text-muted-foreground flex items-center gap-2 cursor-pointer">
             <Settings2 className="w-4 h-4" />
-            Advanced Options
+            Advanced Settings
           </Label>
           {showAdvanced ? (
             <ChevronUp className="w-4 h-4 text-muted-foreground" />
@@ -275,13 +273,8 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
           )}
         </button>
 
-        {/* Always visible on desktop, collapsible on mobile */}
-        <div className={`space-y-4 p-3 sm:p-4 bg-secondary/30 rounded-lg ${!showAdvanced ? 'hidden sm:block' : ''}`}>
-          <Label className="text-sm text-muted-foreground hidden sm:flex items-center gap-2">
-            <Settings2 className="w-4 h-4" />
-            Appearance
-          </Label>
-
+        {/* Collapsible content */}
+        <div className={`space-y-4 p-3 sm:p-4 bg-secondary/30 rounded-lg ${!showAdvanced ? 'hidden' : ''}`}>
           {/* Dot Shape */}
           <div className="space-y-2">
             <label className="text-xs text-muted-foreground">Dot Shape</label>
