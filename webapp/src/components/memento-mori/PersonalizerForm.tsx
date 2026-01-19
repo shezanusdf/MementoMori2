@@ -200,8 +200,8 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
         </div>
       )}
 
-      {/* Birth Date, Country & iPhone Model - all in one row on larger screens */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+      {/* Birth Date, Country & iPhone Model - stacked on mobile, row on desktop */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
         <div className="space-y-2">
           <Label htmlFor="birthDate" className="text-sm text-muted-foreground">
             Birth Date
@@ -233,7 +233,7 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
           </Select>
         </div>
 
-        <div className="space-y-2 col-span-2 sm:col-span-1">
+        <div className="space-y-2">
           <Label className="text-sm text-muted-foreground flex items-center gap-1.5">
             <Smartphone className="w-3.5 h-3.5" />
             iPhone Model
