@@ -51,24 +51,36 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
             </p>
           </div>
 
-          {/* Decorative weeks visualization - Two rows */}
-          <div className="py-6 animate-fade-in-delay-3 max-w-lg">
-            <div className="flex flex-col gap-[3px]">
-              <div className="flex gap-[3px]">
-                {Array.from({ length: 35 }).map((_, i) => (
+          {/* Decorative weeks visualization - matching wallpaper style */}
+          <div className="py-6 animate-fade-in-delay-3 max-w-xl">
+            <div className="flex flex-col gap-[2px]">
+              {/* Row 1 - all lived */}
+              <div className="flex gap-[2px]">
+                {Array.from({ length: 52 }).map((_, i) => (
                   <div
                     key={i}
-                    className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                      i < 24 ? 'bg-primary' : 'bg-muted'
-                    }`}
+                    className="w-[5px] h-[5px] rounded-full"
+                    style={{ backgroundColor: '#d35233' }}
                   />
                 ))}
               </div>
-              <div className="flex gap-[3px]">
-                {Array.from({ length: 35 }).map((_, i) => (
+              {/* Row 2 - partially lived */}
+              <div className="flex gap-[2px]">
+                {Array.from({ length: 52 }).map((_, i) => (
                   <div
-                    key={i + 35}
-                    className="w-1.5 h-1.5 rounded-full bg-muted transition-colors"
+                    key={i + 52}
+                    className="w-[5px] h-[5px] rounded-full"
+                    style={{ backgroundColor: i < 28 ? '#d35233' : '#d9d4cc' }}
+                  />
+                ))}
+              </div>
+              {/* Row 3 - all future */}
+              <div className="flex gap-[2px]">
+                {Array.from({ length: 52 }).map((_, i) => (
+                  <div
+                    key={i + 104}
+                    className="w-[5px] h-[5px] rounded-full"
+                    style={{ backgroundColor: '#d9d4cc' }}
                   />
                 ))}
               </div>
