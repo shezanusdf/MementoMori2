@@ -28,7 +28,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
 
           {/* The Philosophy */}
           <div className="space-y-4 max-w-2xl animate-fade-in-delay-1 -mt-4">
-            <p className="text-xl md:text-2xl text-foreground/60 leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/60 leading-relaxed">
               How many have you spent? How many remain?
             </p>
 
@@ -52,23 +52,23 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
           </div>
 
           {/* Decorative weeks visualization - Two rows */}
-          <div className="py-6 animate-fade-in-delay-3">
-            <div className="flex flex-col gap-[4px]">
-              <div className="flex gap-[4px]">
-                {Array.from({ length: 26 }).map((_, i) => (
+          <div className="py-6 animate-fade-in-delay-3 max-w-lg">
+            <div className="flex flex-col gap-[3px]">
+              <div className="flex gap-[3px]">
+                {Array.from({ length: 35 }).map((_, i) => (
                   <div
                     key={i}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                      i < 18 ? 'bg-primary' : 'bg-muted'
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                      i < 24 ? 'bg-primary' : 'bg-muted'
                     }`}
                   />
                 ))}
               </div>
-              <div className="flex gap-[4px]">
-                {Array.from({ length: 26 }).map((_, i) => (
+              <div className="flex gap-[3px]">
+                {Array.from({ length: 35 }).map((_, i) => (
                   <div
-                    key={i + 26}
-                    className="w-2.5 h-2.5 rounded-full bg-muted transition-colors"
+                    key={i + 35}
+                    className="w-1.5 h-1.5 rounded-full bg-muted transition-colors"
                   />
                 ))}
               </div>
