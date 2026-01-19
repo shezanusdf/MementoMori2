@@ -11,7 +11,7 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
       {/* Navigation */}
       <nav className="w-full px-4 sm:px-6 py-4 sm:py-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <img src="/image-2.png" alt="InspoGrid" className="h-5 w-5 object-contain rounded-md" />
+          <img src="/Favicon.jfif" alt="InspoGrid" className="h-5 w-5 object-contain rounded-md" />
           <span className="text-sm font-medium tracking-tight">InspoGrid</span>
         </div>
       </nav>
