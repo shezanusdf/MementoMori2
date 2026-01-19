@@ -36,7 +36,6 @@ function drawDot(
   } else if (shape === "square") {
     ctx.fillRect(x, y, size, size);
   } else {
-    // rounded
     ctx.beginPath();
     roundRect(ctx, x, y, size, size, cornerRadius);
     ctx.fill();
@@ -70,7 +69,6 @@ function generateWallpaper(settings: WallpaperSettings): Buffer {
   const canvas = createCanvas(device.width, device.height);
   const ctx = canvas.getContext("2d");
 
-  // Background
   ctx.fillStyle = colors.background;
   ctx.fillRect(0, 0, device.width, device.height);
 
@@ -80,14 +78,18 @@ function generateWallpaper(settings: WallpaperSettings): Buffer {
   const cols = 52;
   const rows = Math.ceil(totalWeeks / cols);
 
-  // REDUCED spacing for labels - tighter layout (matching frontend)
   const labelSpace = settings.showLabels ? Math.round(device.width * 0.025) : 0;
   const axisTitleSpace = settings.showLabels ? Math.round(device.width * 0.015) : 0;
   const padding = device.width * 0.04;
-  const topOffset = settings.widgetPosition === "top" ? device.safeAreaTop + 320 : device.safeAreaTop + 180;
-  const bottomOffset = settings.widgetPosition === "bottom" ? device.safeAreaBottom + 250 : device.safeAreaBottom + 80;
+  const topOffset =
+    settings.widgetPosition === "top"
+      ? device.safeAreaTop + 320
+      : device.safeAreaTop + 180;
+  const bottomOffset =
+    settings.widgetPosition === "bottom"
+      ? device.safeAreaBottom + 250
+      : device.safeAreaBottom + 80;
 
-  // EQUAL margins on both sides
   const labelOffset = settings.showLabels ? labelSpace + axisTitleSpace : 0;
   const sidePadding = padding + labelOffset;
   const topPadding = settings.showLabels ? labelSpace + axisTitleSpace : 0;
@@ -105,68 +107,66 @@ function generateWallpaper(settings: WallpaperSettings): Buffer {
   const gridWidth = cols * cellSize;
   const gridHeight = rows * cellSize;
 
-  // Center the grid with equal spacing on both sides
   const remainingWidth = availableWidth - gridWidth;
   const startX = sidePadding + remainingWidth / 2;
-  const startY = topOffset + topPadding + (availableHeight - gridHeight) / 2;
+  const startY =
+    topOffset + topPadding + (availableHeight - gridHeight) / 2;
 
-  // Draw labels if enabled
   if (settings.showLabels) {
     const fontSize = Math.round(cellSize * 0.55);
     const titleFontSize = Math.round(device.width * 0.016);
     ctx.fillStyle = colors.text;
     ctx.globalAlpha = 0.4;
 
-    // X-axis title: "WEEK OF YEAR"
     ctx.save();
     ctx.font = `300 ${titleFontSize}px sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
-    const xTitleY = startY - labelSpace * 0.6;
-    ctx.fillText("WEEK OF YEAR", startX + gridWidth / 2, xTitleY);
+    ctx.fillText("WEEK OF YEAR", startX + gridWidth / 2, startY - labelSpace * 0.6);
     ctx.restore();
 
-    // X-axis labels (Week numbers)
     ctx.font = `${fontSize}px sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
     const weekLabels = [1, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52];
     for (const week of weekLabels) {
       const col = week - 1;
-      const x = startX + col * cellSize + cellSize / 2;
-      const y = startY - fontSize * 0.2;
-      ctx.fillText(week.toString(), x, y);
+      ctx.fillText(
+        week.toString(),
+        startX + col * cellSize + cellSize / 2,
+        startY - fontSize * 0.2
+      );
     }
 
-    // Y-axis title: "AGE" - rotated
     ctx.save();
     ctx.font = `300 ${titleFontSize}px sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    const yTitleX = startX - labelSpace - axisTitleSpace * 0.6;
-    const yTitleY = startY + gridHeight / 2;
-    ctx.translate(yTitleX, yTitleY);
+    ctx.translate(
+      startX - labelSpace - axisTitleSpace * 0.6,
+      startY + gridHeight / 2
+    );
     ctx.rotate(-Math.PI / 2);
     ctx.fillText("AGE", 0, 0);
     ctx.restore();
 
-    // Y-axis labels (Age)
     ctx.font = `${fontSize}px sans-serif`;
     ctx.textAlign = "right";
     ctx.textBaseline = "middle";
     for (let age = 10; age <= settings.lifeExpectancy; age += 10) {
       const row = age;
       if (row < rows) {
-        const x = startX - fontSize * 0.4;
-        const y = startY + row * cellSize + cellSize / 2;
-        ctx.fillText(age.toString(), x, y);
+        ctx.fillText(
+          age.toString(),
+          startX - fontSize * 0.4,
+          startY + row * cellSize + cellSize / 2
+        );
       }
     }
 
     ctx.globalAlpha = 1;
   }
 
-  // Draw dots
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
       const weekIndex = row * cols + col;
@@ -183,13 +183,24 @@ function generateWallpaper(settings: WallpaperSettings): Buffer {
   return canvas.toBuffer("image/png");
 }
 
-// GET /api/wallpaper/:token - Generate wallpaper from token (for iOS Shortcut)
-wallpaperRouter.get("/:token", async (c) => {
-  const token = c.req.param("token");
+// ✅ FIXED: GET /api/wallpaper?token=...
+wallpaperRouter.get("/", async (c) => {
+  const token = c.req.query("token");
+
+  if (!token) {
+    return c.json(
+      { error: { message: "Missing token", code: "MISSING_TOKEN" } },
+      400
+    );
+  }
+
   const settings = decodeToken(token);
 
   if (!settings) {
-    return c.json({ error: { message: "Invalid token", code: "INVALID_TOKEN" } }, 400);
+    return c.json(
+      { error: { message: "Invalid token", code: "INVALID_TOKEN" } },
+      400
+    );
   }
 
   try {
@@ -204,11 +215,14 @@ wallpaperRouter.get("/:token", async (c) => {
     });
   } catch (error) {
     console.error("Wallpaper generation error:", error);
-    return c.json({ error: { message: "Failed to generate wallpaper", code: "GENERATION_ERROR" } }, 500);
+    return c.json(
+      { error: { message: "Failed to generate wallpaper", code: "GENERATION_ERROR" } },
+      500
+    );
   }
 });
 
-// POST /api/wallpaper/token - Create a token from settings
+// POST /api/wallpaper/token (unchanged)
 wallpaperRouter.post("/token", async (c) => {
   try {
     const body = await c.req.json();
@@ -217,9 +231,13 @@ wallpaperRouter.post("/token", async (c) => {
     const token = Buffer.from(JSON.stringify(settings)).toString("base64url");
 
     return c.json({ data: { token } });
-  } catch (error) {
-    return c.json({ error: { message: "Invalid settings", code: "INVALID_SETTINGS" } }, 400);
+  } catch {
+    return c.json(
+      { error: { message: "Invalid settings", code: "INVALID_SETTINGS" } },
+      400
+    );
   }
 });
 
 export { wallpaperRouter };
+
