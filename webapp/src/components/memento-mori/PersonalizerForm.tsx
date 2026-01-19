@@ -48,9 +48,10 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
 
   // Build the wallpaper URL for iOS Shortcut
   const wallpaperUrl = useMemo(() => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
-    return `${backendUrl}/api/wallpaper/${userToken}`;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+  return `${backendUrl}/api/wallpaper?token=${userToken}`;
   }, [userToken]);
+
 
   const handleCopyToken = async () => {
     await navigator.clipboard.writeText(wallpaperUrl);
