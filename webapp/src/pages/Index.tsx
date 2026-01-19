@@ -4,6 +4,7 @@ import { IPhoneMockup } from '@/components/memento-mori/IPhoneMockup';
 import { PersonalizerForm } from '@/components/memento-mori/PersonalizerForm';
 import { WallpaperCanvas, useWallpaperDownload } from '@/components/memento-mori/WallpaperGenerator';
 import { WallpaperSettings, calculateWeeksLived, calculateTotalWeeks, getThemeColors } from '@/components/memento-mori/types';
+import { ChevronDown } from 'lucide-react';
 
 // Default birth date (30 years ago)
 const getDefaultBirthDate = () => {
@@ -44,22 +45,34 @@ export default function Index() {
       <section
         ref={personalizerRef}
         id="create"
-        className="py-12 sm:py-24 px-4 sm:px-6 md:px-12 lg:px-24 border-t border-border"
+        className="py-8 sm:py-24 px-4 sm:px-6 md:px-12 lg:px-24 border-t border-border"
       >
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="mb-8 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-foreground mb-3 sm:mb-4">
+          {/* Section Header - more compact on mobile */}
+          <div className="mb-6 sm:mb-16">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif text-foreground mb-2 sm:mb-4">
               Make it yours.
             </h2>
-            <p className="text-muted-foreground text-base sm:text-lg max-w-md">
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-md">
               Choose your theme, enter your birth date, and watch your life unfold in weeks.
             </p>
           </div>
 
           {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-16 lg:gap-24 items-start">
-            {/* Form - Left Side */}
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-16 lg:gap-24 items-start">
+            {/* iPhone Mockup - Top on mobile, Right on desktop */}
+            <div className="flex flex-col items-center order-1 lg:order-2 lg:sticky lg:top-8">
+              <div className="animate-float scale-[0.75] sm:scale-90 lg:scale-100 -my-8 sm:my-0">
+                <IPhoneMockup settings={settings} />
+              </div>
+              {/* Scroll hint on mobile */}
+              <div className="flex flex-col items-center mt-2 sm:hidden text-muted-foreground/60">
+                <span className="text-xs">Scroll to customize</span>
+                <ChevronDown className="w-4 h-4 animate-bounce" />
+              </div>
+            </div>
+
+            {/* Form - Bottom on mobile, Left on desktop */}
             <div className="order-2 lg:order-1">
               <PersonalizerForm
                 settings={settings}
@@ -67,21 +80,21 @@ export default function Index() {
                 onDownload={download}
               />
 
-              {/* Stats below form */}
-              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border">
-                <div className="flex flex-wrap items-center gap-4 sm:gap-8 text-sm">
-                  <div className="flex items-center gap-2">
+              {/* Stats below form - more compact on mobile */}
+              <div className="mt-6 sm:mt-12 pt-4 sm:pt-8 border-t border-border">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-8 text-xs sm:text-sm">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <div
-                      className="w-2.5 h-2.5 rounded-sm"
+                      className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm"
                       style={{ backgroundColor: colors.lived }}
                     />
                     <span className="text-muted-foreground">
-                      {weeksLived.toLocaleString()} weeks lived
+                      {weeksLived.toLocaleString()} lived
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <div
-                      className="w-2.5 h-2.5 rounded-sm"
+                      className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-sm"
                       style={{ backgroundColor: colors.future }}
                     />
                     <span className="text-muted-foreground">
@@ -89,16 +102,9 @@ export default function Index() {
                     </span>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground mt-3">
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-2 sm:mt-3">
                   {percentLived}% of your expected life has passed
                 </p>
-              </div>
-            </div>
-
-            {/* iPhone Mockup - Right Side */}
-            <div className="flex flex-col items-center lg:items-end order-1 lg:order-2 lg:sticky lg:top-8">
-              <div className="animate-float scale-90 sm:scale-100">
-                <IPhoneMockup settings={settings} />
               </div>
             </div>
           </div>
@@ -109,9 +115,9 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="py-10 sm:py-16 px-4 sm:px-6 border-t border-border">
+      <footer className="py-8 sm:py-16 px-4 sm:px-6 border-t border-border">
         <div className="max-w-6xl mx-auto flex justify-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             made with <span className="text-red-500">❤️</span> by{' '}
             <a
               href="https://shezan.neocities.org/"
