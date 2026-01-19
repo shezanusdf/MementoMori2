@@ -13,6 +13,8 @@ const allowed = [
   /^http:\/\/127\.0\.0\.1(:\d+)?$/,
   /^https:\/\/[a-z0-9-]+\.dev\.vibecode\.run$/,
   /^https:\/\/[a-z0-9-]+\.vibecode\.run$/,
+  /^https:\/\/[a-z0-9-]+\.onrender\.com$/,
+  /^https:\/\/[a-z0-9-]+\.vibecodeapp\.com$/,
 ];
 
 app.use(
@@ -25,6 +27,9 @@ app.use(
 
 // Logging
 app.use("*", logger());
+
+// Root health check (for Render)
+app.get("/", (c) => c.json({ status: "ok", service: "mementomori-api" }));
 
 // Health check endpoint
 app.get("/health", (c) => c.json({ status: "ok" }));
