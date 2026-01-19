@@ -51,39 +51,16 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
             </p>
           </div>
 
-          {/* Decorative weeks visualization - matching wallpaper style */}
-          <div className="py-6 animate-fade-in-delay-3 max-w-xl">
-            <div className="flex flex-col gap-[2px]">
-              {/* Row 1 - all lived */}
-              <div className="flex gap-[2px]">
-                {Array.from({ length: 52 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-[5px] h-[5px] rounded-full"
-                    style={{ backgroundColor: '#d35233' }}
-                  />
-                ))}
-              </div>
-              {/* Row 2 - partially lived */}
-              <div className="flex gap-[2px]">
-                {Array.from({ length: 52 }).map((_, i) => (
-                  <div
-                    key={i + 52}
-                    className="w-[5px] h-[5px] rounded-full"
-                    style={{ backgroundColor: i < 28 ? '#d35233' : '#d9d4cc' }}
-                  />
-                ))}
-              </div>
-              {/* Row 3 - all future */}
-              <div className="flex gap-[2px]">
-                {Array.from({ length: 52 }).map((_, i) => (
-                  <div
-                    key={i + 104}
-                    className="w-[5px] h-[5px] rounded-full"
-                    style={{ backgroundColor: '#d9d4cc' }}
-                  />
-                ))}
-              </div>
+          {/* Decorative weeks visualization - matching reference */}
+          <div className="py-6 animate-fade-in-delay-3">
+            <div className="flex gap-[4px]">
+              {Array.from({ length: 40 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-[10px] h-[10px] rounded-[2px]"
+                  style={{ backgroundColor: i < 28 ? '#d35233' : '#d9d4cc' }}
+                />
+              ))}
             </div>
             <p className="text-xs text-muted-foreground mt-4">
               Each dot = one week of your life
