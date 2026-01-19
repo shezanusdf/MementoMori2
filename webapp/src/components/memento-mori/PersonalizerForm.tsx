@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Circle, Square, RectangleHorizontal, Download, Smartphone, Palette, Settings2, X, Copy, Check, Share2 } from 'lucide-react';
+import { Circle, Square, RectangleHorizontal, Download, Smartphone, Palette, Settings2, X, Copy, Check } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import {
   WallpaperSettings,
@@ -339,15 +339,7 @@ export function PersonalizerForm({ settings, onSettingsChange, onDownload }: Per
           className="flex-1 bg-foreground text-background hover:bg-foreground/90 font-medium rounded-full h-12"
         >
           <Download className="w-4 h-4 mr-2" />
-          Download Wallpaper
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => setShowShortcutModal(true)}
-          className="flex-1 border-border text-foreground hover:bg-secondary rounded-full h-12"
-        >
-          <Share2 className="w-4 h-4 mr-2" />
-          iOS Shortcut
+          Install for iOS
         </Button>
       </div>
 

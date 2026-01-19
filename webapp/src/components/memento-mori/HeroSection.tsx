@@ -1,4 +1,5 @@
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface HeroSectionProps {
   onScrollToPersonalizer: () => void;
@@ -13,63 +14,58 @@ export function HeroSection({ onScrollToPersonalizer }: HeroSectionProps) {
           <img src="/image-2.png" alt="InspoGrid" className="h-5 w-5 object-contain rounded-md" />
           <span className="text-sm font-medium tracking-tight">InspoGrid</span>
         </div>
-        <div className="flex items-center gap-8">
-          <button
-            onClick={onScrollToPersonalizer}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            create
-          </button>
-        </div>
       </nav>
 
-      {/* Main Hero Content - Manifesto Style */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 max-w-5xl">
-        <div className="space-y-12 md:space-y-16">
+      {/* Main Hero Content - Centered Style */}
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24 max-w-4xl mx-auto">
+        <div className="space-y-10 md:space-y-12">
           {/* Opening Hook */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.1] animate-fade-in">
             The average human lives
             <br />
-            <span className="italic">4,000 weeks.</span>
+            <span className="italic text-primary">4,000 weeks.</span>
           </h1>
 
           {/* The Philosophy */}
-          <div className="space-y-8 max-w-2xl animate-fade-in-delay-1">
+          <div className="space-y-6 max-w-2xl animate-fade-in-delay-1">
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              That's it. A grid of tiny dots, each representing a week of your existence.
-              Some are already behind you. The rest await.
+              How many have you spent? How many remain?
             </p>
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              <span className="text-foreground font-medium">InspoGrid</span> visualizes your life in weeks.
-              A wallpaper that updates daily,
-              showing exactly where you stand in the story of your life.
+              <span className="text-foreground font-medium">InspoGrid</span> turns your life into a single image. One dot per week. Updated daily. Always on your lock screen.
+            </p>
+          </div>
+
+          {/* CTA Button */}
+          <div className="animate-fade-in-delay-2">
+            <Button
+              onClick={onScrollToPersonalizer}
+              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 py-6 text-base font-medium"
+            >
+              Create Your Wallpaper
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+            <p className="text-sm text-muted-foreground mt-3">
+              Free. No signup required.
             </p>
           </div>
 
           {/* Decorative weeks visualization */}
-          <div className="py-8 animate-fade-in-delay-2">
-            <div className="flex flex-wrap gap-[3px] max-w-md">
-              {Array.from({ length: 80 }).map((_, i) => (
+          <div className="py-6 animate-fade-in-delay-3">
+            <div className="flex flex-wrap gap-[4px]">
+              {Array.from({ length: 52 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`w-2 h-2 rounded-sm transition-colors ${
-                    i < 52 ? 'bg-primary' : 'bg-muted'
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                    i < 35 ? 'bg-primary' : 'bg-muted'
                   }`}
                 />
               ))}
             </div>
-            <p className="text-xs text-muted-foreground mt-4 tracking-wide">
+            <p className="text-sm text-muted-foreground mt-4">
               Each dot = one week of your life
             </p>
-          </div>
-
-          {/* CTA - scroll indicator */}
-          <div className="animate-fade-in-delay-3">
-            <ChevronDown
-              onClick={onScrollToPersonalizer}
-              className="w-6 h-6 text-muted-foreground hover:text-foreground transition-colors cursor-pointer animate-bounce"
-            />
           </div>
         </div>
       </div>
