@@ -10,7 +10,7 @@ InspoGrid is a "Memento Mori" wallpaper generator that visualizes your life in w
 - **Device Support**: All modern iPhones from SE to iPhone 17 series
 - **Appearance Options**: Dot shapes (circle, rounded, square), widget position adjustments, labels toggle
 - **Download**: Generate and download high-resolution wallpaper PNG
-- **iOS Shortcut**: Auto-update wallpaper daily via iOS Shortcuts automation (coming soon)
+- **iOS Shortcut**: Auto-update wallpaper daily via iOS Shortcuts automation
 
 ## Design
 
